@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ma collection de mangas : découvrez les séries que je possède et le détail de chaque tome." />
+  <title>Ma Collection Manga</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">📚 Ma Collection Manga</h1>
+      <nav class="header-nav">
+        <a href="admin.html" class="btn btn--secondary btn--sm">Administration</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Barre de recherche et filtres -->
+    <section class="toolbar" aria-label="Recherche et filtres">
+      <div class="search-wrapper">
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Rechercher un manga..."
+          aria-label="Rechercher un manga dans la collection"
+        />
+      </div>
+      <div class="filter-wrapper">
+        <select id="filter-status" class="filter-select" aria-label="Filtrer par statut">
+          <option value="all">Toutes les séries</option>
+          <option value="complete">Collection complète</option>
+          <option value="incomplete">Tomes manquants</option>
+          <option value="FINISHED">Série terminée</option>
+          <option value="RELEASING">En cours de publication</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Stats rapides -->
+    <section class="stats-bar" aria-label="Statistiques de la collection">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-series">—</span>
+        <span class="stat-label">séries</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-volumes-owned">—</span>
+        <span class="stat-label">tomes possédés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-volumes-missing">—</span>
+        <span class="stat-label">tomes manquants</span>
+      </div>
+    </section>
+
+    <!-- Liste des mangas -->
+    <section aria-label="Collection de mangas">
+      <div id="loading-indicator" class="loading-indicator" aria-live="polite">
+        Chargement de la collection…
+      </div>
+      <div id="error-message" class="error-message hidden" aria-live="assertive"></div>
+      <div id="manga-grid" class="manga-grid" aria-label="Grille des mangas"></div>
+      <p id="empty-message" class="empty-message hidden">Aucun manga ne correspond à votre recherche.</p>
+    </section>
+
+  </main>
+
+  <!-- Modale détail d'un manga -->
+  <div id="manga-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Fermer">✕</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Données issues de <a href="https://anilist.co" target="_blank" rel="noopener noreferrer">AniList</a> · Hébergé sur GitHub Pages</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/anilist.js"></script>
+  <script src="js/sheets.js"></script>
+  <script src="js/public.js"></script>
+</body>
+</html>

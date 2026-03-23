@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Administration — Ma Collection Manga</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">📚 Ma Collection Manga</h1>
+      <nav class="header-nav">
+        <a href="index.html" class="btn btn--secondary btn--sm">Vue publique</a>
+        <button id="btn-logout" class="btn btn--ghost btn--sm hidden">Déconnexion</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Panneau de connexion (affiché tant que non connecté) -->
+    <section id="login-panel" class="login-panel" aria-label="Connexion administrateur">
+      <div class="login-card">
+        <h2 class="login-title">Accès administration</h2>
+        <p class="login-description">Entrez votre mot de passe pour gérer la collection.</p>
+        <form id="login-form" class="login-form" novalidate>
+          <div class="form-group">
+            <label for="password-input" class="form-label">Mot de passe</label>
+            <input
+              type="password"
+              id="password-input"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+              aria-describedby="login-error"
+            />
+          </div>
+          <div id="login-error" class="form-error hidden" aria-live="assertive">Mot de passe incorrect.</div>
+          <button type="submit" class="btn btn--primary btn--full">Se connecter</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Interface admin (masquée jusqu'à authentification) -->
+    <section id="admin-panel" class="hidden" aria-label="Interface d'administration">
+
+      <!-- Recherche et ajout d'un manga -->
+      <div class="admin-section">
+        <h2 class="section-title">Ajouter un manga à la collection</h2>
+        <div class="search-add-wrapper">
+          <div class="search-wrapper">
+            <input
+              type="search"
+              id="anilist-search-input"
+              class="search-input"
+              placeholder="Rechercher sur AniList (ex: Berserk)…"
+              aria-label="Rechercher un manga sur AniList"
+            />
+            <button id="btn-anilist-search" class="btn btn--primary" aria-label="Lancer la recherche">
+              Rechercher
+            </button>
+          </div>
+          <div id="anilist-results" class="anilist-results hidden" aria-label="Résultats de la recherche AniList" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Collection existante avec gestion des volumes -->
+      <div class="admin-section">
+        <h2 class="section-title">Ma collection</h2>
+        <div class="admin-toolbar">
+          <input
+            type="search"
+            id="admin-filter-input"
+            class="search-input search-input--sm"
+            placeholder="Filtrer la collection…"
+            aria-label="Filtrer les mangas de la collection"
+          />
+        </div>
+
+        <div id="admin-loading" class="loading-indicator" aria-live="polite">
+          Chargement de la collection…
+        </div>
+        <div id="admin-error" class="error-message hidden" aria-live="assertive"></div>
+        <div id="admin-collection" class="admin-collection" aria-label="Liste des mangas à gérer"></div>
+        <p id="admin-empty" class="empty-message hidden">La collection est vide. Ajoutez votre premier manga ci-dessus.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Modale confirmation suppression -->
+  <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <div class="modal-backdrop" id="confirm-backdrop"></div>
+    <div class="modal-content modal-content--sm">
+      <h2 id="confirm-title" class="modal-title">Supprimer ce manga ?</h2>
+      <p id="confirm-message" class="modal-message"></p>
+      <div class="modal-actions">
+        <button id="confirm-cancel" class="btn btn--secondary">Annuler</button>
+        <button id="confirm-ok" class="btn btn--danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Interface réservée à l'administrateur · <a href="index.html">Vue publique</a></p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/anilist.js"></script>
+  <script src="js/sheets.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
